@@ -1,5 +1,6 @@
 package com.yezi.luframe.controller;
 
+import com.yezi.luframe.annotation.RequireLog;
 import com.yezi.luframe.param.LoginParam;
 import com.yezi.luframe.service.LoginService;
 import com.yezi.luframe.vo.JsonResult;
@@ -29,6 +30,7 @@ public class LoginController {
      * @param loginParam
      * @return
      */
+    @RequireLog
     @PostMapping(value = "/login")
     public JsonResult login(@Valid @RequestBody LoginParam loginParam, HttpServletRequest request) {
         return loginService.login(loginParam);

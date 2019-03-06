@@ -52,6 +52,7 @@ public class UserController {
      * @param searchParam
      * @return
      */
+    @RequireLog
     @PostMapping(value = "/user/search")
     public JsonResult listUser(@Valid @RequestBody UserSearchParam searchParam) {
         log.info("UserSearchParam ={}", searchParam);

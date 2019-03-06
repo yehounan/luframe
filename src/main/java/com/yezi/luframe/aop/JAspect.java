@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JAspect {
 
-    private static final String POINT = "execution (* com.huanya.websocketdemo.controller..*.*(..))";
+    private static final String POINT = "execution (* com.yezi.luframe.controller..*.*(..))";
 
     @Pointcut(POINT)
     public void performance() {
