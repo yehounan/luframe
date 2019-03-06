@@ -6,9 +6,21 @@ import com.yezi.luframe.entity.User;
 import com.yezi.luframe.param.UserSearchParam;
 import com.yezi.luframe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yezi
@@ -40,15 +52,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageInfoData<User> listUser(UserSearchParam searchParam) {
         Pageable pageable = PageRequest.of(searchParam.getPageNum(), searchParam.getPageSize(), Sort.Direction.DESC, "id");
-        User user = new User();
-        if (!StringUtils.isEmpty(searchParam.getName())) {
-            user.setName(searchParam.getName());
-        }
-        if (!StringUtils.isEmpty(searchParam.getAddress())) {
-            user.setAddress(searchParam.getAddress());
-        }
-        Example<User> example = Example.of(user);
-        Page<User> page = userDao.findAll(example, pageable);
+        Specification<User> specification = new Specification() {
+            @Nullable
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList<>();
+                if (!StringUtils.isEmpty(searchParam.getName())) {
+                    Predicate predicate = criteriaBuilder.like(root.get("name"), "%" + searchParam.getName() + "%");
+                    predicates.add(predicate);
+                }
+                if (!StringUtils.isEmpty(searchParam.getAddress())) {
+                    Predicate predicate = criteriaBuilder.like(root.get("address"), "%" + searchParam.getName() + "%");
+                    predicates.add(predicate);
+                }
+                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            }
+        };
+        Page<User> page = userDao.findAll(specification, pageable);
         return new PageInfoData<>(page);
     }
 }
