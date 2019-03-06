@@ -28,6 +28,11 @@ public class User extends BaseEntity {
     private String address;
 
     /**
+     * 密码
+     */
+    private String password;
+
+    /**
      * 年龄
      */
     private Integer age;

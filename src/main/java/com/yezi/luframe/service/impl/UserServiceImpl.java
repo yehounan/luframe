@@ -3,13 +3,11 @@ package com.yezi.luframe.service.impl;
 import com.yezi.luframe.base.PageInfoData;
 import com.yezi.luframe.dao.UserDao;
 import com.yezi.luframe.entity.User;
+import com.yezi.luframe.param.LoginParam;
 import com.yezi.luframe.param.UserSearchParam;
 import com.yezi.luframe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
@@ -21,6 +19,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author yezi
@@ -70,5 +69,34 @@ public class UserServiceImpl implements UserService {
         };
         Page<User> page = userDao.findAll(specification, pageable);
         return new PageInfoData<>(page);
+    }
+
+    /**
+     * 根据id查询用户
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public User findById(Long id) {
+        return userDao.findById(id).get();
+    }
+
+    /**
+     * 根据用户名和密码查询用户
+     *
+     * @param loginParam
+     * @return
+     */
+    @Override
+    public User findByUsernameAndPassword(LoginParam loginParam) {
+        User select = new User();
+        select.setName(loginParam.getUsername());
+        select.setPassword(loginParam.getPassword());
+        Optional<User> optional = userDao.findOne(Example.of(select));
+        if (!optional.isPresent()) {
+            return null;
+        }
+        return optional.get();
     }
 }

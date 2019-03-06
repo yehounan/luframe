@@ -24,6 +24,12 @@ public class UserParam {
     private String name;
 
     /**
+     * 密码不能为空
+     */
+    @NotNull(message = "密码不能为空")
+    private String password;
+
+    /**
      * 年龄
      */
     @NotNull(message = "年龄不能为空")
@@ -34,6 +40,7 @@ public class UserParam {
      */
     @NotNull(message = "地址不能为空")
     private String address;
+
 
     /**
      * 创建时间

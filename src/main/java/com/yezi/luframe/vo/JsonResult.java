@@ -36,4 +36,11 @@ public class JsonResult<T> {
         return this;
     }
 
+    public JsonResult<T> isNotLogin() {
+        this.code = 1;
+        this.message = "没有登录信息";
+        this.data = null;
+        return this;
+    }
+
 }

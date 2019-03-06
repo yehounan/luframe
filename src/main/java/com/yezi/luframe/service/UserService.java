@@ -2,6 +2,7 @@ package com.yezi.luframe.service;
 
 import com.yezi.luframe.base.PageInfoData;
 import com.yezi.luframe.entity.User;
+import com.yezi.luframe.param.LoginParam;
 import com.yezi.luframe.param.UserSearchParam;
 
 /**
@@ -25,4 +26,20 @@ public interface UserService {
      * @return
      */
     PageInfoData<User> listUser(UserSearchParam searchParam);
+
+    /**
+     * 根据id查询用户
+     *
+     * @param id
+     * @return
+     */
+    User findById(Long id);
+
+    /**
+     * 根据用户名和密码查询用户
+     *
+     * @param loginParam
+     * @return
+     */
+    User findByUsernameAndPassword(LoginParam loginParam);
 }
