@@ -1,4 +1,4 @@
-package com.yezi.luframe.thirdlogin.weixin.controller;
+package com.yezi.luframe.thirdlogin.weixin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.internal.org.apache.commons.lang3.StringUtils;
