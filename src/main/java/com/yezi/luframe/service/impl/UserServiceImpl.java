@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public PageInfoData<User> listUser(UserSearchParam searchParam) {
-        Pageable pageable = PageRequest.of(searchParam.getPageNum(), searchParam.getPageSize(), Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(searchParam.getPageNum() - 1, searchParam.getPageSize(), Sort.Direction.DESC, "id");
         Specification<User> specification = new Specification() {
             @Nullable
             @Override
