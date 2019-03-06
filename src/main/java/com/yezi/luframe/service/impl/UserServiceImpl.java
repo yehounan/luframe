@@ -49,7 +49,6 @@ public class UserServiceImpl implements UserService {
         }
         Example<User> example = Example.of(user);
         Page<User> page = userDao.findAll(example, pageable);
-        page.getContent();
         return new PageInfoData<>(page);
     }
 }
