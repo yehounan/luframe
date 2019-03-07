@@ -43,4 +43,11 @@ public class JsonResult<T> {
         return this;
     }
 
+    public JsonResult<T> tokenIsExpired() {
+        this.code = 2;
+        this.message = "token已过期";
+        this.data = null;
+        return this;
+    }
+
 }

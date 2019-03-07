@@ -34,6 +34,8 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
                 log.info("登录用户信息{}", user);
                 return true;
             }
+            log.info("token已过期....");
+            JsonUtils.returnJson(response, new JsonResult<>().tokenIsExpired());
             return false;
         }
         JsonUtils.returnJson(response, new JsonResult<>().isNotLogin());
