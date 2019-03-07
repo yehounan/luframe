@@ -1,4 +1,4 @@
-package com.yezi.luframe.core;
+package com.yezi.luframe.lambda;
 
 
 import org.springframework.util.StringUtils;

@@ -1,4 +1,4 @@
-package com.yezi.luframe.core;
+package com.yezi.luframe.lambda;
 
 /**
  * Created by yezi on 2018-06-13.

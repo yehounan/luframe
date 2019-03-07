@@ -1,4 +1,4 @@
-package com.yezi.luframe.core;
+package com.yezi.luframe.lambda;
 
 import java.util.ArrayList;
 import java.util.List;
