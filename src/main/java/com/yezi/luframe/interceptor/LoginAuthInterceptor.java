@@ -31,6 +31,7 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
         if (!StringUtils.isEmpty(jwt)) {
             User user = JwtUtils.unsign(jwt, User.class);
             if (null != user) {
+                log.info("登录用户信息{}", user);
                 return true;
             }
             return false;
