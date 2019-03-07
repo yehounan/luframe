@@ -138,7 +138,7 @@ public class WeixinLoginController {
                     log.info("微信登录获取AuthorizationCode-成功：" + JSONObject.toJSONString(jsonResult));
                     // 授权成功跳转到个人中心首页
                     log.info("微信登录获取AuthorizationCode-返回：{url:" + homeUrl + "}");
-                    response.sendRedirect(url);
+                    response.sendRedirect(homeUrl);
                     return jsonResult;
                 }
             }
