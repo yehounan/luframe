@@ -4,3 +4,4 @@
 3.websocket通信能力<br>
 4.登录权限验证<br>
 5.微信QQ第三方登录<br>
+6.lambda表达式支持<br>
