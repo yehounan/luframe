@@ -1,12 +1,12 @@
 package com.yezi.luframe.redis;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.annotations.Source;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,10 +21,10 @@ public class RedisCache {
     private static final TimeUnit CACHE_TIME_UNIT = TimeUnit.SECONDS;
 
     @Autowired
-    RedisTemplate redisTemplate;
+    RedisTemplate<String, Object> redisTemplate;
 
-    @Source
-    ValueOperations valueOperations;
+    @Resource
+    ValueOperations<String, Object> valueOperations;
 
     public interface RedisCacheValueNotFound<T> {
         T getValue();

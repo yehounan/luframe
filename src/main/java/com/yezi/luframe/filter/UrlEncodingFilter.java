@@ -38,9 +38,7 @@ public class UrlEncodingFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        String location = request.getParameter("location");
-        log.info("请求URI{},location{}", request.getRequestURI(), location);
-        response.addHeader("location", URLEncoder.encode(location, "UTF-8") + ":" + Math.random());
+        log.info("请求URI{}", request.getRequestURI());
         filterChain.doFilter(request, response);
     }
 }
