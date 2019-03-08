@@ -12,10 +12,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan("com.yezi.luframe.*")
 @ServletComponentScan(basePackages = "com.yezi.luframe.*")
-public class LuframeApplication {
+public class LuFrameApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LuframeApplication.class, args);
+        SpringApplication.run(LuFrameApplication.class, args);
     }
 
 }
