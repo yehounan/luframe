@@ -1,6 +1,6 @@
 package com.yezi.luframe.service.impl;
 
-import com.yezi.luframe.Enum.CodeEnum;
+import com.yezi.luframe.enums.CodeEnum;
 import com.yezi.luframe.constant.Constants;
 import com.yezi.luframe.entity.User;
 import com.yezi.luframe.param.LoginParam;

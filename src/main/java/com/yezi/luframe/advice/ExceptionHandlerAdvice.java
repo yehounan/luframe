@@ -1,6 +1,6 @@
 package com.yezi.luframe.advice;
 
-import com.yezi.luframe.Enum.CodeEnum;
+import com.yezi.luframe.enums.CodeEnum;
 import com.yezi.luframe.vo.ArgumentInvalidResult;
 import com.yezi.luframe.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;

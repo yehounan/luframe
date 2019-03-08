@@ -1,7 +1,7 @@
 package com.yezi.luframe.exception;
 
 
-import com.yezi.luframe.Enum.CodeEnum;
+import com.yezi.luframe.enums.CodeEnum;
 
 @SuppressWarnings("serial")
 public class ServiceException extends RuntimeException {
