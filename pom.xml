@@ -39,6 +39,10 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -91,6 +95,18 @@
 
 
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <!-- Redis -->
+                <spring.redis.host>192.168.1.248</spring.redis.host>
+                <spring.redis.port>6379</spring.redis.port>
+                <spring.redis.password></spring.redis.password>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
