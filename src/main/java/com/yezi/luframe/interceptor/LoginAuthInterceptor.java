@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 登录拦截器
+ * 拦截器：Interceptor 在AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。
+ * 比如日志，安全等。一般拦截器方法都是通过动态代理的方式实现。
+ * 可以通过它来进行权限验证，或者判断用户是否登陆，或者是像12306 判断当前时间是否是购票时间。
  *
  * @author yezi
  * @date 2019/3/6 14:54

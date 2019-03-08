@@ -1,6 +1,7 @@
 package com.yezi.luframe.controller;
 
 import com.yezi.luframe.listener.OnlineUserListener;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
  * @author yezi
  * @date 2019/3/4 10:58
  */
+@Slf4j
 @Controller
 public class HomeController {
 
@@ -33,7 +35,8 @@ public class HomeController {
      */
     @GetMapping(value = "/hello/onlineUsers")
     @ResponseBody
-    public String onlineUsers(HttpServletRequest request) {
+    public String onlineUsers(String location, HttpServletRequest request) {
+        log.info("location{}", location);
         HttpSession session = request.getSession(true);
         session.setAttribute("hello", "hello");
         return "在线用户数:【" + OnlineUserListener.onlineUsers + "】";
