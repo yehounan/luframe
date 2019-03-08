@@ -24,7 +24,7 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String login = "/login";
         String hello = "/hello";
-        if (request.getServletPath().contains(login) || hello.equals(request.getServletPath())) {
+        if (request.getServletPath().contains(login) || request.getServletPath().contains(hello)) {
             return true;
         }
         String jwt = request.getHeader("Authentication");
