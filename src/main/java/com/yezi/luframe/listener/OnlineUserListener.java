@@ -23,8 +23,8 @@ public class OnlineUserListener implements HttpSessionListener {
      */
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        log.info("在线用户+1");
         onlineUsers++;
+        log.info("在线用户+1，当前在线用户数:{}", onlineUsers);
     }
 
     /**
@@ -34,8 +34,7 @@ public class OnlineUserListener implements HttpSessionListener {
      */
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        log.info("在线用户-1");
         onlineUsers--;
-
+        log.info("在线用户-1，当前在线用户数:{}", onlineUsers);
     }
 }
