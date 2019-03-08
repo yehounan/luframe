@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLEncoder;
 
 /**
  * 过滤器：Filter是Servlet技术中最实用的技术，Web开发人员通过Filter技术，
