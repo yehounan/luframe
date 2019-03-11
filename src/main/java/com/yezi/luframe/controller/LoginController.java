@@ -33,6 +33,6 @@ public class LoginController {
     @RequireLog
     @PostMapping(value = "/login")
     public JsonResult login(@Valid @RequestBody LoginParam loginParam, HttpServletRequest request) {
-        return loginService.login(loginParam);
+        return loginService.login(loginParam, request);
     }
 }

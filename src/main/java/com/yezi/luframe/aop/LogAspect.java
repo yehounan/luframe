@@ -1,12 +1,25 @@
 package com.yezi.luframe.aop;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yezi.luframe.annotation.RequireLog;
-import com.yezi.luframe.vo.JsonResult;
+import com.yezi.luframe.constant.Constants;
+import com.yezi.luframe.mongodb.AdminUserOperateLog;
+import com.yezi.luframe.mongodb.service.AdminUserOperateLogService;
+import com.yezi.luframe.util.IpUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
 
 /**
  * 记录日志切面
@@ -19,6 +32,9 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
 
     private static final String POINT = "execution (* com.yezi.luframe.controller..*.*(..))";
+
+    @Autowired
+    AdminUserOperateLogService logService;
 
     @Pointcut(POINT)
     public void performance() {
@@ -40,12 +56,36 @@ public class LogAspect {
     @AfterReturning(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog,result", returning = "result")
     public void afterReturning(JoinPoint joinPoint, RequireLog requireLog, Object result) {
         //todo  接入mongodb，日志存入mongodb
-        JsonResult data = (JsonResult) result;
-        String methodName = joinPoint.getSignature().getName();
-        String className = joinPoint.getTarget().getClass().getName();
-        System.out.println(className + "-------" + methodName);
-        System.out.println(data.toString());
-        System.out.println("[JAspect] afterReturning advise");
+        AdminUserOperateLog operateLog = new AdminUserOperateLog();
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        HttpServletRequest httpServletRequest = ((ServletRequestAttributes) requestAttributes).getRequest();
+        operateLog.setResult(result.toString());
+        operateLog.setRequestUri(httpServletRequest.getRequestURI());
+        operateLog.setRequestMethod(httpServletRequest.getMethod());
+        operateLog.setMethodName(joinPoint.getSignature().getName());
+        operateLog.setClassName(joinPoint.getTarget().getClass().getName());
+        //获取方法入参
+        List<Object> args = Arrays.asList(joinPoint.getArgs());
+        String params = "";
+        if (args != null && args.size() > 0) {
+            //1.处理request中入参，但获取不到注解的bean
+            Enumeration enumeration = httpServletRequest.getParameterNames();
+            while (enumeration.hasMoreElements()) {
+                String name = (String) enumeration.nextElement();
+                String value = httpServletRequest.getParameter(name);
+                params += name + "=" + value + ",";
+            }
+            params += ";";
+            //2.处理注解的bean
+            for (int i = 0; i < args.size(); i++) {
+                params += JSONObject.toJSONString(args.get(i) + ";");
+            }
+        }
+        operateLog.setParams(params);
+        operateLog.setLoginIp(IpUtil.getIpAddr(httpServletRequest));
+        Long userId = (Long) httpServletRequest.getAttribute(Constants.ADMIN_USER_ID);
+        operateLog.setUserId(userId);
+        logService.addAdminUserOperateLog(operateLog);
     }
 
 //    @AfterThrowing(value = "performance() && @annotation(requireLog)")
