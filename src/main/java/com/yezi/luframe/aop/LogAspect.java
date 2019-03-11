@@ -39,7 +39,7 @@ public class LogAspect {
 
     @AfterReturning(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog,result", returning = "result")
     public void afterReturning(JoinPoint joinPoint, RequireLog requireLog, Object result) {
-
+        //todo  接入mongodb，日志存入mongodb
         JsonResult data = (JsonResult) result;
         String methodName = joinPoint.getSignature().getName();
         String className = joinPoint.getTarget().getClass().getName();
