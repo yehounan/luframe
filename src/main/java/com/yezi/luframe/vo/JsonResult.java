@@ -9,9 +9,25 @@ import lombok.Data;
 @Data
 public class JsonResult<T> {
 
+    /**
+     * 响应码
+     */
     private Integer code;
+
+    /**
+     * 响应信息
+     */
     private String message;
+
+    /**
+     * 响应数据
+     */
     private T data;
+
+    /**
+     * 接口执行时间
+     */
+    private Long cost;
 
     public JsonResult() {
     }
