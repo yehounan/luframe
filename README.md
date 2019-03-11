@@ -6,3 +6,4 @@
 5.微信QQ第三方登录<br>
 6.lambda表达式支持<br>
 7.redis支持<br>
+8.mongodb存储后台用户操作日志支持<br>
