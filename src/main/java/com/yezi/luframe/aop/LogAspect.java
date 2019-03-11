@@ -9,12 +9,14 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
+ * 记录日志切面
+ *
  * @author yezi
  * @date 2019/3/4 10:55
  */
 @Aspect
 @Component
-public class JAspect {
+public class LogAspect {
 
     private static final String POINT = "execution (* com.yezi.luframe.controller..*.*(..))";
 
