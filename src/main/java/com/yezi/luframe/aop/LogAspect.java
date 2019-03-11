@@ -36,23 +36,19 @@ public class LogAspect {
     @Autowired
     AdminUserOperateLogService logService;
 
+
     @Pointcut(POINT)
     public void performance() {
 
     }
 
-//    @Before(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog")
-//    public void before(JoinPoint joinPoint, RequireLog requireLog) {
-//        System.out.println("[JAspect] before advise");
-//    }
-//
-//    @Around(value = "performance() && @annotation(requireLog)")
-//    public void around(ProceedingJoinPoint pjp, RequireLog requireLog) throws Throwable {
-//        System.out.println("[JAspect] around advise 1");
-//        pjp.proceed();
-//        System.out.println("[JAspect] around advise2");
-//    }
-
+    /**
+     * 切点方法执行完毕返回值之后切面操作
+     *
+     * @param joinPoint
+     * @param requireLog
+     * @param result
+     */
     @AfterReturning(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog,result", returning = "result")
     public void afterReturning(JoinPoint joinPoint, RequireLog requireLog, Object result) {
         AdminUserOperateLog operateLog = new AdminUserOperateLog();
@@ -86,6 +82,17 @@ public class LogAspect {
         operateLog.setUserId(userId);
         logService.addAdminUserOperateLog(operateLog);
     }
+    //    @Before(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog")
+//    public void before(JoinPoint joinPoint, RequireLog requireLog) {
+//        System.out.println("[JAspect] before advise");
+//    }
+//
+//    @Around(value = "performance() && @annotation(requireLog)")
+//    public void around(ProceedingJoinPoint pjp, RequireLog requireLog) throws Throwable {
+//        System.out.println("[JAspect] around advise 1");
+//        pjp.proceed();
+//        System.out.println("[JAspect] around advise2");
+//    }
 
 //    @AfterThrowing(value = "performance() && @annotation(requireLog)")
 //    public void afterThrowing(JoinPoint joinPoint, RequireLog requireLog) {
