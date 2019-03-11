@@ -33,7 +33,7 @@ public class AdminUserOperateLogController {
      * @param operateLog
      * @return
      */
-    @PutMapping("/mongodb/log/update")
+    @PostMapping("/mongodb/log/update")
     public JsonResult updateAdminUserOperateLog(@RequestBody AdminUserOperateLog operateLog) {
         return new JsonResult().OK(operateLogService.updateAdminUserOperateLog(operateLog));
     }
@@ -54,7 +54,7 @@ public class AdminUserOperateLogController {
      *
      * @param id
      */
-    @DeleteMapping("/mongodb/log/{id}")
+    @GetMapping("/mongodb/log/delete/{id}")
     public JsonResult deleteAdminUserOperateLogById(@PathVariable("id") String id) {
         operateLogService.deleteAdminUserOperateLog(id);
         return new JsonResult().OK();
