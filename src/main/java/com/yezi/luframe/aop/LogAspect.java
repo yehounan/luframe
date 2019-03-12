@@ -6,6 +6,7 @@ import com.yezi.luframe.constant.Constants;
 import com.yezi.luframe.mongodb.AdminUserOperateLog;
 import com.yezi.luframe.mongodb.service.AdminUserOperateLogService;
 import com.yezi.luframe.util.IpUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -27,6 +28,7 @@ import java.util.List;
  * @author yezi
  * @date 2019/3/4 10:55
  */
+@Slf4j
 @Aspect
 @Component
 public class LogAspect {
@@ -80,7 +82,12 @@ public class LogAspect {
         operateLog.setLoginIp(IpUtil.getIpAddr(httpServletRequest));
         Long userId = (Long) httpServletRequest.getAttribute(Constants.ADMIN_USER_ID);
         operateLog.setUserId(userId);
-        logService.addAdminUserOperateLog(operateLog);
+        try {
+            logService.addAdminUserOperateLog(operateLog);
+        } catch (Exception e) {
+            log.info("mongodb操作日志记录异常:{}", e.getStackTrace());
+        }
+
     }
     //    @Before(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog")
 //    public void before(JoinPoint joinPoint, RequireLog requireLog) {
