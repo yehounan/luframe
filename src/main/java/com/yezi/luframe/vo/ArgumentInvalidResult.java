@@ -1,18 +1,32 @@
 package com.yezi.luframe.vo;
 
-import lombok.Data;
-
 /**
- * 参数校验异常结果
+ * Desc    : 参数校验异常结果
+ * Date    : 2018-01-12
  *
- * @author yezi
- * @date 2019/3/4 10:59
+ * @author : yxy
  */
-@Data
 public class ArgumentInvalidResult {
-
     private String field;
     private Object rejectedValue;
     private String defaultMessage;
 
+    public String getField() {
+        return field;
+    }
+    public void setField(String field) {
+        this.field = field;
+    }
+    public Object getRejectedValue() {
+        return rejectedValue;
+    }
+    public void setRejectedValue(Object rejectedValue) {
+        this.rejectedValue = rejectedValue;
+    }
+    public String getDefaultMessage() {
+        return defaultMessage;
+    }
+    public void setDefaultMessage(String defaultMessage) {
+        this.defaultMessage = defaultMessage;
+    }
 }

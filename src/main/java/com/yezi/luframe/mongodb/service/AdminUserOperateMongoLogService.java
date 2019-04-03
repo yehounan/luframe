@@ -2,7 +2,7 @@ package com.yezi.luframe.mongodb.service;
 
 import com.yezi.luframe.base.PageInfoData;
 import com.yezi.luframe.base.TimeScopeNotRequiredPageParam;
-import com.yezi.luframe.mongodb.AdminUserOperateLog;
+import com.yezi.luframe.mongodb.AdminUserOperateMongoLog;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author yezi
  * @date 2019/3/11 14:52
  */
-public interface AdminUserOperateLogService {
+public interface AdminUserOperateMongoLogService {
 
     /**
      * 保存用户操作日志
@@ -18,7 +18,7 @@ public interface AdminUserOperateLogService {
      * @param operateLog
      * @return
      */
-    AdminUserOperateLog addAdminUserOperateLog(AdminUserOperateLog operateLog);
+    AdminUserOperateMongoLog addAdminUserOperateLog(AdminUserOperateMongoLog operateLog);
 
     /**
      * 根据id删除用户操作日志
@@ -33,7 +33,7 @@ public interface AdminUserOperateLogService {
      * @param operateLog
      * @return
      */
-    AdminUserOperateLog updateAdminUserOperateLog(AdminUserOperateLog operateLog);
+    AdminUserOperateMongoLog updateAdminUserOperateLog(AdminUserOperateMongoLog operateLog);
 
     /**
      * 根据id查找用户操作日志
@@ -41,14 +41,14 @@ public interface AdminUserOperateLogService {
      * @param id
      * @return
      */
-    AdminUserOperateLog findAdminUserOperateLogById(String id);
+    AdminUserOperateMongoLog findAdminUserOperateLogById(String id);
 
     /**
      * 查询所有用户操作日志
      *
      * @return
      */
-    List<AdminUserOperateLog> findAllAdminUserOperateLog();
+    List<AdminUserOperateMongoLog> findAllAdminUserOperateLog();
 
     /**
      * 用户操作日志列表查询（分页）
@@ -56,6 +56,6 @@ public interface AdminUserOperateLogService {
      * @param searchParam
      * @return
      */
-    PageInfoData<AdminUserOperateLog> listAdminUserOperateLog(TimeScopeNotRequiredPageParam searchParam);
+    PageInfoData<AdminUserOperateMongoLog> listAdminUserOperateLog(TimeScopeNotRequiredPageParam searchParam);
 
 }

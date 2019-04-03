@@ -1,22 +1,15 @@
-package com.yezi.luframe.mongodb;
+package com.yezi.luframe.entity;
 
 import lombok.Data;
 
-import javax.persistence.Id;
-
-
 /**
- * 操作日志
+ * Desc    : 用户操作日志
  *
- * @author yezi
- * @date 2019/3/11 14:34
+ * @author : yxy
+ * @date : 2018-05-21
  */
 @Data
-public class AdminUserOperateLog {
-
-
-    @Id
-    private String id;
+public class AdminUserOperateLog extends BaseDomain {
 
     /**
      * 用户ID
@@ -57,5 +50,4 @@ public class AdminUserOperateLog {
      * 执行方法返回结果
      */
     private String result;
-
 }

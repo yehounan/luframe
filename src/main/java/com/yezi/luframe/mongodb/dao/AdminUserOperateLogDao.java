@@ -1,6 +1,6 @@
 package com.yezi.luframe.mongodb.dao;
 
-import com.yezi.luframe.mongodb.AdminUserOperateLog;
+import com.yezi.luframe.mongodb.AdminUserOperateMongoLog;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @date 2019/3/11 14:47
  */
 @Repository
-public interface AdminUserOperateLogDao extends MongoRepository<AdminUserOperateLog, Long> {
+public interface AdminUserOperateLogDao extends MongoRepository<AdminUserOperateMongoLog, Long> {
 }

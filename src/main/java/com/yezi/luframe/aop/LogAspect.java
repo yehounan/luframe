@@ -3,8 +3,8 @@ package com.yezi.luframe.aop;
 import com.alibaba.fastjson.JSONObject;
 import com.yezi.luframe.annotation.RequireLog;
 import com.yezi.luframe.constant.Constants;
-import com.yezi.luframe.mongodb.AdminUserOperateLog;
-import com.yezi.luframe.mongodb.service.AdminUserOperateLogService;
+import com.yezi.luframe.mongodb.AdminUserOperateMongoLog;
+import com.yezi.luframe.mongodb.service.AdminUserOperateMongoLogService;
 import com.yezi.luframe.util.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -36,7 +36,7 @@ public class LogAspect {
     private static final String POINT = "execution (* com.yezi.luframe.controller..*.*(..))";
 
     @Autowired
-    AdminUserOperateLogService logService;
+    AdminUserOperateMongoLogService logService;
 
 
     @Pointcut(POINT)
@@ -53,7 +53,7 @@ public class LogAspect {
      */
     @AfterReturning(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog,result", returning = "result")
     public void afterReturning(JoinPoint joinPoint, RequireLog requireLog, Object result) {
-        AdminUserOperateLog operateLog = new AdminUserOperateLog();
+        AdminUserOperateMongoLog operateLog = new AdminUserOperateMongoLog();
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         HttpServletRequest httpServletRequest = ((ServletRequestAttributes) requestAttributes).getRequest();
         operateLog.setResult(result.toString());

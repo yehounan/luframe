@@ -1,7 +1,7 @@
 package com.yezi.luframe.controller.mongodb;
 
-import com.yezi.luframe.mongodb.AdminUserOperateLog;
-import com.yezi.luframe.mongodb.service.AdminUserOperateLogService;
+import com.yezi.luframe.mongodb.AdminUserOperateMongoLog;
+import com.yezi.luframe.mongodb.service.AdminUserOperateMongoLogService;
 import com.yezi.luframe.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
  * @date 2019/3/11 15:10
  */
 @RestController
-public class AdminUserOperateLogController {
+public class AdminUserOperateMongoLogController {
 
     @Autowired
-    AdminUserOperateLogService operateLogService;
+    AdminUserOperateMongoLogService operateLogService;
 
     /**
      * 保存用户操作日志
@@ -23,7 +23,7 @@ public class AdminUserOperateLogController {
      * @return
      */
     @PostMapping("/mongodb/log/add")
-    public JsonResult addAdminUserOperateLog(@RequestBody AdminUserOperateLog operateLog) {
+    public JsonResult addAdminUserOperateLog(@RequestBody AdminUserOperateMongoLog operateLog) {
         return new JsonResult().OK(operateLogService.addAdminUserOperateLog(operateLog));
     }
 
@@ -34,7 +34,7 @@ public class AdminUserOperateLogController {
      * @return
      */
     @PostMapping("/mongodb/log/update")
-    public JsonResult updateAdminUserOperateLog(@RequestBody AdminUserOperateLog operateLog) {
+    public JsonResult updateAdminUserOperateLog(@RequestBody AdminUserOperateMongoLog operateLog) {
         return new JsonResult().OK(operateLogService.updateAdminUserOperateLog(operateLog));
     }
 
