@@ -1,6 +1,7 @@
 package com.yezi.luframe.mapper;
 
 
+import com.yezi.luframe.base.BaseMapper;
 import com.yezi.luframe.dto.AdminUserDTO;
 import com.yezi.luframe.entity.AdminUser;
 import org.apache.ibatis.annotations.Param;

@@ -1,6 +1,7 @@
 package com.yezi.luframe.mapper;
 
 
+import com.yezi.luframe.base.BaseMapper;
 import com.yezi.luframe.entity.AdminRole;
 import org.springframework.stereotype.Repository;
 

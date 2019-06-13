@@ -159,7 +159,7 @@ public class RedisConfig {
      * @param redisTemplate
      * @return
      */
-    @Bean
+//    @Bean
     public RedisConnection redisConnection(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.getConnectionFactory().getConnection();
     }

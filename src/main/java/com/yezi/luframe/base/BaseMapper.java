@@ -1,4 +1,4 @@
-package com.yezi.luframe.mapper;
+package com.yezi.luframe.base;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
