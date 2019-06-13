@@ -1,6 +1,7 @@
 package com.yezi.luframe.controller;
 
 
+import com.yezi.luframe.annotation.RequireLog;
 import com.yezi.luframe.base.PageParam;
 import com.yezi.luframe.constant.URIConstants;
 import com.yezi.luframe.param.AdminUserInsertParam;
@@ -25,6 +26,7 @@ public class AdminSysUserController {
     private AdminUserService adminUserService;
 
     @PostMapping(URIConstants.ADMINUSER_LIST)
+    @RequireLog
     public ExtendVO adminUserList(@RequestBody PageParam pageParam) {
         return adminUserService.getAdminUserList(pageParam);
     }

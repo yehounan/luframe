@@ -1,5 +1,7 @@
 package com.yezi.luframe.entity;
 
+import com.yezi.luframe.base.BaseDomain;
+
 /**
  * Description 用户角色表数据库对象
  *

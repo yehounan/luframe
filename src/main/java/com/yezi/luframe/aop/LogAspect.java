@@ -82,12 +82,11 @@ public class LogAspect {
         operateLog.setLoginIp(IpUtil.getIpAddr(httpServletRequest));
         Long userId = (Long) httpServletRequest.getAttribute(Constants.ADMIN_USER_ID);
         operateLog.setUserId(userId);
-        //暂时屏蔽mongodb
-//        try {
-//            logService.addAdminUserOperateLog(operateLog);
-//        } catch (Exception e) {
-//            log.info("mongodb操作日志记录异常:{}", e.getStackTrace());
-//        }
+        try {
+            logService.addAdminUserOperateLog(operateLog);
+        } catch (Exception e) {
+            log.info("mongodb操作日志记录异常:{}", e.getStackTrace());
+        }
 
     }
     //    @Before(value = "performance() && @annotation(requireLog)", argNames = "joinPoint,requireLog")

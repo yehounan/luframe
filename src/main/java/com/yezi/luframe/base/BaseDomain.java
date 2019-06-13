@@ -1,4 +1,4 @@
-package com.yezi.luframe.entity;
+package com.yezi.luframe.base;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;

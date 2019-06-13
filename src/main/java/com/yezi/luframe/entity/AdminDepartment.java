@@ -1,6 +1,7 @@
 package com.yezi.luframe.entity;
 
 
+import com.yezi.luframe.base.BaseDomain;
 import lombok.Data;
 
 /**

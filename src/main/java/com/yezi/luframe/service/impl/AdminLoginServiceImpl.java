@@ -61,7 +61,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
 
     @Override
-    public ExtendVO getTokenByAdminUserPassword(AdminLoginParam adminLoginParam, HttpServletRequest httpServletRequest) {
+    public ExtendVO     getTokenByAdminUserPassword(AdminLoginParam adminLoginParam, HttpServletRequest httpServletRequest) {
         String ip = IpUtil.getIpAddr(httpServletRequest);
         log.info("登录Ip：" + ip);
         if (Strings.isNullOrEmpty(ip)) {

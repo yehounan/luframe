@@ -1,5 +1,6 @@
 package com.yezi.luframe.interceptor;
 
+import com.yezi.luframe.entity.AdminUser;
 import com.yezi.luframe.entity.User;
 import com.yezi.luframe.util.JsonUtils;
 import com.yezi.luframe.util.JwtUtils;
@@ -27,12 +28,13 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String login = "/login";
         String hello = "/hello";
-        if (request.getServletPath().contains(login) || request.getServletPath().contains(hello)) {
+        String imgcode = "/imgcode";
+        if (request.getServletPath().contains(login) || request.getServletPath().contains(hello) || request.getServletPath().contains(imgcode)) {
             return true;
         }
         String jwt = request.getHeader("Authentication");
         if (!StringUtils.isEmpty(jwt)) {
-            User user = JwtUtils.unsign(jwt, User.class);
+            AdminUser user = JwtUtils.unsign(jwt, AdminUser.class);
             if (null != user) {
                 log.info("登录用户信息{}", user);
                 return true;
